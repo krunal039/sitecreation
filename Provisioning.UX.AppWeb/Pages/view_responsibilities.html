@@ -1,0 +1,22 @@
+﻿<div class="modal-right-heading">
+    <h1>{{ 'SITE_OWNER_RESPONSIBILITIES' | translate }}</h1>
+</div>
+
+<div class="modal-right-body" ng-form="siteResponsibilitiesform">
+    <p>
+        {{ 'SITE_OWNER_RESPONSIBILITIES_TEXT' | translate }}
+
+    </p>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="form-group">
+                <div>
+                    <input type="checkbox" value="" ng-model="siteConfiguration.properties.termsaccepted" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                    {{ 'ACCEPT' | translate }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

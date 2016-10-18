@@ -1,0 +1,75 @@
+﻿<pnp:ProvisioningTemplate ID="TeamSite" Version="1" xmlns:pnp="http://schemas.dev.office.com/PnP/2015/05/ProvisioningSchema">
+    <pnp:Files>
+      <pnp:File Src="siteLogo.png" Folder="SiteAssets" Overwrite="true"/>
+      <pnp:File Src="custombg.jpg" Folder="~themecatalog/15" Overwrite="true" />
+      <pnp:File Src="custom.spcolor" Folder="~themecatalog/15" Overwrite="true" />
+      <pnp:File Src="custom.spfont" Folder="~themecatalog/15" Overwrite="true" />
+    </pnp:Files>
+    <pnp:CustomActions>
+      <pnp:SiteCustomActions>
+        <pnp:CustomAction Name="CA_SITE_DATAPRIVACY"
+                Description="Data Privacy Banner"
+                Location="ScriptLink"
+                Title="CA_SITE_DATAPRIVACY"
+                ScriptSrc=""
+                ScriptBlock="
+                    var headID = document.getElementsByTagName('head')[0]; 
+                    var dataPrivacyTag = document.createElement('script');
+                    dataPrivacyTag.type = 'text/javascript';
+                    dataPrivacyTag.src = 'https://createasite.azurewebsites.net/scripts/siteprivacy.js';
+                    headID.appendChild(dataPrivacyTag);">
+          <pnp:CommandUIExtension />
+        </pnp:CustomAction>
+        <pnp:CustomAction Name="CA_SITE_SUBSITE_OVERRIDE"
+                  Description="Override new sub-site link"
+                  Location="ScriptLink"
+                  Title="CA_SITE_SUBSITE_OVERRIDE"
+                  ScriptSrc=""
+                  ScriptBlock="
+                      var SubSiteSettings_Web_Url = 'https://createasite.azurewebsites.net/pages/subsite/newsbweb.aspx?SPHostUrl=';
+                      var headID = document.getElementsByTagName('head')[0]; 
+                      var subsiteScriptTag = document.createElement('script');
+                      subsiteScriptTag.type = 'text/javascript';
+                      subsiteScriptTag.src = 'https://createasite.azurewebsites.net/scripts/SubSiteOverride.js';
+                      headID.appendChild(subsiteScriptTag);">
+          <pnp:CommandUIExtension />
+        </pnp:CustomAction>
+      </pnp:SiteCustomActions>
+      <pnp:WebCustomActions>
+        <pnp:CustomAction Name="CA_SITE_SETTINGS_SITECLASSIFICATION"
+                  Description="Site Classification Application"
+                  Group="SiteTasks"
+                  Location="Microsoft.SharePoint.SiteSettings"
+                  Title="Site Classification"
+                  Sequence="1000"
+                  Url="https://createasite.azurewebsites.net/pages/SiteClassification/SiteEdit.aspx?SPHostUrl={0}"
+                  Rights="31">
+          <pnp:CommandUIExtension />
+        </pnp:CustomAction>
+        <pnp:CustomAction Name="CA_SITE_STDMENU_SITECLASSIFICATION"
+                  Description="Site Classification Module"
+                  Group="SiteActions"
+                  Location="Microsoft.SharePoint.StandardMenu"
+                  Title="Site Classification"
+                  Sequence="1000"
+                  Url="https://createasite.azurewebsites.net/pages/SiteClassification/SiteEdit.aspx?SPHostUrl={0}"
+                  Rights="31">
+          <pnp:CommandUIExtension />
+        </pnp:CustomAction>
+      </pnp:WebCustomActions>
+    </pnp:CustomActions>
+  <pnp:ComposedLook Name="Office" Version="1"
+                ColorFile=""
+                FontFile=""
+                BackgroundFile=""
+                MasterPage="~masterpagecatalog/seattle.master"
+                AlternateCSS=""
+                SiteLogo="" />
+    <!--<pnp:ComposedLook Name="Contoso" Version="1"
+                  ColorFile="~themecatalog/15/custom.spcolor"
+                  FontFile="~themecatalog/15/custom.spfont"
+                  BackgroundFile="~themecatalog/15/custombg.jpg"
+                  MasterPage="~masterpagecatalog/seattle.master"
+                  AlternateCSS=""
+                  SiteLogo="~site/SiteAssets/siteLogo.png" />-->
+</pnp:ProvisioningTemplate>
