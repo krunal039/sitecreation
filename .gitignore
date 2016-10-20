@@ -13,8 +13,8 @@
 x64/
 build/
 pkg/
-[Pp]rovisioning.WebJob/MailSettings.config
-[Pp]rovisioning.WebJob/appSettings.config
+*/[Mm]ailSettings.config
+*/appSettings.config
 pkgobj/
 [Bb]in/
 [Oo]bj/
